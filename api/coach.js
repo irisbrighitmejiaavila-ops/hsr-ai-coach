@@ -42,7 +42,7 @@ Return ONLY valid JSON:
 
     const data = await openaiRes.json();
 
-    const text = data.output_text || JSON.stringify(data);
+    const text = data.output[0].content[0].text;
 
     res.setHeader("Content-Type", "application/json");
     res.status(200).send(text);
