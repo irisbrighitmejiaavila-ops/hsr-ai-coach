@@ -1,6 +1,13 @@
 let memoryStore = {};
 
 export default async function handler(req, res) {
+res.setHeader("Access-Control-Allow-Origin", "*");
+res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+if (req.method === "OPTIONS") {
+  return res.status(200).end();
+}
   const user_input = req.query.user_input || req.body?.user_input || "";
   const user_id = req.query.user_id || req.body?.user_id || "";
 
