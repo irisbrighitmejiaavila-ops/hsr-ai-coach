@@ -63,9 +63,13 @@ Instructions:
 - be warm, slow, grounding, and clear
 - do not sound clinical
 - return ONLY valid JSON
+- detect ONE main emotional pattern
+- pattern must be one of: idealization, attachment, abandonment, confusion, self-abandonment, validation-seeking, ignoring-signs, emotional-dependency
+- always include "pattern" in the JSON
 
 Required JSON format:
 {
+  "pattern": "",
   "reflection": "",
   "meaning": "",
   "question": "",
