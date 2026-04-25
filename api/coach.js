@@ -75,6 +75,9 @@ You have previous emotional context from the same user.
 Previous emotional context:
 ${memoryContext}
 
+User emotional history:
+${historyContext}
+
 Instructions:
 - respond with emotional depth
 - notice repetition and patterns
