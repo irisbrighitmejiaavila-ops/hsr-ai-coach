@@ -99,7 +99,7 @@ try {
   parsed = {};
 }
 
-await supabase.from("emotional_memory").insert([
+const { error: insertError } = await supabase.from("emotional_memory").insert([
   {
     user_id: safeUserId,
     message: user_input,
@@ -109,6 +109,10 @@ await supabase.from("emotional_memory").insert([
     intensity: 3
   }
 ]);
+
+if (insertError) {
+  console.error("SUPABASE INSERT ERROR:", insertError);
+}
 
     res.setHeader("Content-Type", "application/json");
     res.status(200).send(text);
