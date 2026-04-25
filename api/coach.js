@@ -1,3 +1,9 @@
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
+);
 let memoryStore = {};
 
 export default async function handler(req, res) {
@@ -85,6 +91,24 @@ ${user_input}`
     const data = await openaiRes.json();
 
     const text = data.output?.[0]?.content?.[0]?.text || data.output_text || "";
+    let parsed;
+
+try {
+  parsed = JSON.parse(text);
+} catch {
+  parsed = {};
+}
+
+await supabase.from("emotional_memory").insert([
+  {
+    user_id: safeUserId,
+    message: user_input,
+    pattern: parsed.pattern || null,
+    summary: parsed.meaning || null,
+    stage: "session",
+    intensity: 3
+  }
+]);
 
     res.setHeader("Content-Type", "application/json");
     res.status(200).send(text);
