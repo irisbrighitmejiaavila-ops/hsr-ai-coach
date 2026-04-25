@@ -42,6 +42,19 @@ if (req.method === "OPTIONS") {
   .slice(-5)
   .map(entry => entry.text)
   .join("\n");
+  
+  // 1) Leer historial desde Supabase
+const { data: history } = await supabase
+  .from("emotional_memory")
+  .select("pattern, summary, created_at")
+  .eq("user_id", safeUserId)
+  .order("created_at", { ascending: false })
+  .limit(10);
+
+// 2) Convertir a texto para el prompt
+const historyContext = history
+  ?.map(h => `${h.pattern}: ${h.summary}`)
+  .join("\n") || "";
 
   try {
     const openaiRes = await fetch("https://api.openai.com/v1/responses", {
