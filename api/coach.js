@@ -55,6 +55,9 @@ const { data: history } = await supabase
 const historyContext = history
   ?.map(h => `${h.pattern}: ${h.summary}`)
   .join("\n") || "";
+  
+  const sessionLength = memoryStore[safeUserId].length;
+const isClosingPhase = sessionLength >= 8;
 
   try {
     const openaiRes = await fetch("https://api.openai.com/v1/responses", {
