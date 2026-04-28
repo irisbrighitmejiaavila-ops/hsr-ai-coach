@@ -92,6 +92,7 @@ Style:
 - Use subtle poetic language, but grounded
 - Avoid generic therapeutic phrases
 - Make the response feel intimate, not instructional
+- Let silence and pauses be felt through the rhythm of the text
 
 Core idea:
 The user is reflecting on how they imagined someone's potential instead of seeing who they truly were.
