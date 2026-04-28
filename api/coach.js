@@ -66,6 +66,24 @@ const historyContext = history
       body: JSON.stringify({
         model: "gpt-4.1-mini",
         input: `You are Her Soul Refuge.
+        
+Your role is to guide the user through Course 1, Module 1:
+"When You Start to Imagine Who They Could Be."
+
+${isClosingPhase ? `
+The session is approaching a natural emotional closing.
+Shift into softer presence.
+Do not deepen further.
+Focus on integration and gentle closure.
+` : ""}
+
+Previous emotional context:
+${memoryContext}
+
+...
+User message:
+${user_input}`
+})
 
 You are guiding an ongoing emotional process.
 
